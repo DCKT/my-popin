@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Test my-popin</title>
+  <style>
+
+    .popin {
+      display: none;
+      position: absolute;
+      background: white;
+      z-index: 1001;
+    }
+
+    .popin--visible {
+      display: block;
+    }
+
+    .overlay {
+      display: none;
+      position: absolute;
+      top: 0;
+      left:0;
+      width: 100%;
+      height: 100%;
+      background: rgba(24,24,24, 0.6);
+      z-index: 1000;
+    }
+
+    .overlay--visible {
+      display: block;
+    }
+
+    .popin-close-button {
+      cursor: pointer;
+    }
+
+  </style>
+</head>
+<body>
+  <h1>Test popin</h1>
+  <a href="#" class="test" data-target="popin-test">Test</a>
+
+  <div class="overlay"></div>
+  <div class="popin" id="popin-test">
+    <span class="popin-close-button">Close X</span>
+    Hello
+  </div>
+  <script src="popin.js"></script>
+</body>
+</html>
