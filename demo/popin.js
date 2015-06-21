@@ -49,9 +49,12 @@
 	var Popin = __webpack_require__(1);
 
 	document.addEventListener('DOMContentLoaded', function () {
+	  var div = 'Toto';
+
 	  var popin = new Popin({
 	    triggerElements: '.test',
-	    closeHTML: 'X'
+	    closeHTML: 'X',
+	    content: div
 	  });
 	}, false);
 
@@ -74,6 +77,9 @@
 	    this.currentPopin = null;
 	    this.closeElements = document.querySelectorAll(options.closeElements ? options.closeElements : '.popin-close-button');
 	    this.closeHTML = options.closeHTML;
+	    this.content = options.content;
+
+	    this.overlay ? '' : this.createOverlay();
 	    this.bind();
 	  }
 
@@ -83,6 +89,13 @@
 	      var _this = this;
 
 	      [].forEach.call(this.triggerElements, function (element) {
+
+	        if (_this.content) {
+	          var target = document.getElementById(element.getAttribute('data-target'));
+
+	          target.innerHTML = _this.content;
+	        }
+
 	        element.addEventListener('click', function (e) {
 	          e.preventDefault();
 	          _this.show(e);
@@ -129,6 +142,16 @@
 	    key: 'hideOverlay',
 	    value: function hideOverlay() {
 	      this.overlay.classList.remove('overlay--visible');
+	    }
+	  }, {
+	    key: 'createOverlay',
+	    value: function createOverlay() {
+	      console.log(this.overlay);
+	      var overlay = document.createElement('div');
+	      overlay.className = 'overlay';
+
+	      this.overlay = overlay;
+	      document.body.appendChild(overlay);
 	    }
 	  }]);
 
